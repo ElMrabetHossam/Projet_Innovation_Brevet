@@ -1,3 +1,0 @@
-[server]
-# Evite les warnings LocalSourcesWatcher avec torch/transformers (torch.classes)
-fileWatcherType = "none"

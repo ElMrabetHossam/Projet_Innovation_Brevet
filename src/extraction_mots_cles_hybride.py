@@ -33,10 +33,10 @@ class ExtracteurMotsClesHybride:
 
         # Configuration des modèles Spacy selon la langue
         spacy_models = {
-            "en": "en_core_web_md",
-            "fr": "fr_core_news_md",
-            "zh-cn": "zh_core_web_md", # Chinois
-            "ja": "ja_core_news_md"    # Japonais
+            "en": "en_core_web_lg",
+            "fr": "fr_core_news_lg",
+            "zh-cn": "zh_core_web_lg", # Chinois
+            "ja": "ja_core_news_lg"    # Japonais
         }
         
         model_name = spacy_models.get(langue, "xx_ent_wiki_sm") # Multilingue par défaut
