@@ -1,8 +1,33 @@
+import os
 import sqlite3
+import warnings
 import numpy as np
+
+# Reduce noisy startup logs from transformers/sentence-transformers in Streamlit.
+os.environ.setdefault('TRANSFORMERS_VERBOSITY', 'error')
+os.environ.setdefault('TRANSFORMERS_NO_ADVISORY_WARNINGS', '1')
+os.environ.setdefault('TOKENIZERS_PARALLELISM', 'false')
+
+warnings.filterwarnings(
+    'ignore',
+    message=r"Accessing `__path__` from `\\.models\\..*`\\. Returning `__path__` instead\\. Behavior may be different and this alias will be removed in future versions\\.",
+)
+warnings.filterwarnings(
+    'ignore',
+    message=r'.*alias will be removed in future versions\\.',
+)
+
 from sentence_transformers import SentenceTransformer
 from scipy.spatial.distance import cosine
 import time
+
+try:
+    from transformers.utils import logging as hf_logging
+
+    hf_logging.set_verbosity_error()
+except Exception:
+    # If transformers logging API changes, keep app startup resilient.
+    pass
 
 class MoteurInnovation:
     """
