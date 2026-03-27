@@ -1,3 +1,25 @@
+import os
+import warnings
+import logging
+
+# Configure warning/logging filters as early as possible (before Streamlit import).
+os.environ.setdefault('TRANSFORMERS_VERBOSITY', 'error')
+os.environ.setdefault('TRANSFORMERS_NO_ADVISORY_WARNINGS', '1')
+os.environ.setdefault('TOKENIZERS_PARALLELISM', 'false')
+
+warnings.filterwarnings(
+    'ignore',
+    message=r'.*Accessing `__path__` from `\\.models\\..*`\\. Returning `__path__` instead\\..*',
+)
+warnings.filterwarnings(
+    'ignore',
+    message=r'.*alias will be removed in future versions\\.',
+)
+
+logging.getLogger('transformers').setLevel(logging.ERROR)
+logging.getLogger('sentence_transformers').setLevel(logging.ERROR)
+logging.getLogger('huggingface_hub').setLevel(logging.ERROR)
+
 import streamlit as st
 import sqlite3
 import pandas as pd

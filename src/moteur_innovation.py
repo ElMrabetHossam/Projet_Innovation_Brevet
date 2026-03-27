@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import warnings
+import logging
 import numpy as np
 
 # Reduce noisy startup logs from transformers/sentence-transformers in Streamlit.
@@ -16,6 +17,10 @@ warnings.filterwarnings(
     'ignore',
     message=r'.*alias will be removed in future versions\\.',
 )
+
+logging.getLogger('transformers').setLevel(logging.ERROR)
+logging.getLogger('sentence_transformers').setLevel(logging.ERROR)
+logging.getLogger('huggingface_hub').setLevel(logging.ERROR)
 
 from sentence_transformers import SentenceTransformer
 from scipy.spatial.distance import cosine
