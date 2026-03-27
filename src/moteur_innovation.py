@@ -1,4 +1,5 @@
 import sqlite3
+import os
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from scipy.spatial.distance import cosine
@@ -9,8 +10,13 @@ class MoteurInnovation:
     Moteur d'intelligence artificielle pour l'évaluation de la nouveauté brevetable.
     Combine recherche sémantique vectorielle et modèle mathématique d'exhaustion.
     """
-    def __init__(self, db_path='../data/brevets_innovation.db'):
-        self.db_path = db_path
+    def __init__(self, db_path=None):
+        if db_path is None:
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            self.db_path = os.path.abspath(os.path.join(base_dir, '..', 'data', 'brevets_innovation.db'))
+        else:
+            self.db_path = db_path
+            
         print("🚀 Initialisation du Moteur d'Innovation...")
         
         # Modèle d'embedding très rapide et performant pour la similarité sémantique

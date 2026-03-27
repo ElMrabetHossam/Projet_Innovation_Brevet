@@ -2,8 +2,9 @@ import sqlite3
 import os
 
 # Chemins relatifs vers nos dossiers
-DB_PATH = '../data/brevets_innovation.db'
-SCHEMA_PATH = 'schema_db.sql'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.abspath(os.path.join(BASE_DIR, '..', 'data', 'brevets_innovation.db'))
+SCHEMA_PATH = os.path.abspath(os.path.join(BASE_DIR, 'schema_db.sql'))
 
 def initialiser_base_de_donnees():
     print("Création de la base de données SQLite...")

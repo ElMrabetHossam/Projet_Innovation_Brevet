@@ -130,11 +130,16 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+import os
+
 # Initialisation du moteur (avec cache pour ne pas recharger à chaque interaction)
 @st.cache_resource
 def charger_moteur():
     try:
-        return MoteurInnovation(db_path='../data/brevets_innovation.db')
+        # Utiliser un chemin absolu pour garantir le fonctionnement sur Streamlit Cloud
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.abspath(os.path.join(base_dir, '..', 'data', 'brevets_innovation.db'))
+        return MoteurInnovation(db_path=db_path)
     except Exception as e:
         st.error(f"Erreur lors du chargement du moteur : {e}")
         return None
