@@ -1,0 +1,7 @@
+pandas
+streamlit
+sentence-transformers
+spacy
+langdetect
+yake
+keybert
