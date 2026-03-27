@@ -7,4 +7,3 @@ spacy
 langdetect
 yake
 keybert
-nltk
