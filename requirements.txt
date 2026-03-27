@@ -1,8 +1,10 @@
-pandas
+pandas<3.0.0
 streamlit
+plotly
 sentence-transformers
 spacy
 langdetect
 yake
 keybert
-plotly
+https://github.com/explosion/spacy-models/releases/download/fr_core_news_md-3.8.0/fr_core_news_md-3.8.0-py3-none-any.whl
+https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
